@@ -110,5 +110,14 @@
     els.forEach(function(el){io.observe(el)});
   } else { els.forEach(function(el){el.classList.add('in')}); }
 
+  // Avant / après : visible seulement si les deux photos existent
+  document.querySelectorAll('.ba').forEach(function(ba){
+    var imgs=[].slice.call(ba.querySelectorAll('img')),ok=0,wrap=ba.closest('.ba-wrap');
+    imgs.forEach(function(i){
+      var done=function(){if(i.naturalWidth&&++ok===imgs.length){ba.classList.add('ready');if(wrap)wrap.classList.add('ready');}};
+      if(i.complete)done();else i.addEventListener('load',done);
+    });
+  });
+
   var y=$('year');if(y)y.textContent=new Date().getFullYear();
 })();
