@@ -721,3 +721,16 @@ details .ans{padding:0 22px 22px;color:var(--muted);font-size:15.5px}
 @media (max-width:720px){.ba{gap:10px}.ba figure{border-radius:14px}.ba figcaption{font-size:11px;padding:5px 10px;top:10px;left:10px}}
 .ba{display:none}.ba.ready{display:grid}
 .hero-badge b{white-space:nowrap}
+
+/* ---------- Avant / après : plusieurs comparaisons ---------- */
+.ba-wrap{display:none;margin-bottom:56px}
+.ba-wrap.ready{display:block}
+.ba-head{text-align:center;margin-bottom:26px}
+.ba-head h3{font-size:clamp(26px,3vw,36px);margin-top:10px}
+.ba-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.ba-grid .ba{margin:0;max-width:none;align-content:start;background:#fff;border:1px solid var(--line);border-radius:24px;padding:14px;gap:10px}
+.ba-grid .ba figure{aspect-ratio:4/3;border-radius:16px;box-shadow:none}
+.ba-grid .ba p{text-align:left;padding:4px 6px 4px;font-size:15px}
+.ba-grid .ba p b{display:block;font-size:16.5px;margin-bottom:2px}
+@media (max-width:1080px){.ba-grid{grid-template-columns:1fr}}
+@media (max-width:720px){.ba-grid{gap:16px}.ba-grid .ba{padding:10px;border-radius:18px}.ba-grid .ba figure{border-radius:12px}.ba-wrap{margin-bottom:40px}}

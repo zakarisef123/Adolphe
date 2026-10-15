@@ -30,11 +30,21 @@ P = {  # photos disponibles sur le site
     "lierre": "upload-20260112_110128-standard.webp",
     "chantier1": "upload-20260214_123913-high-0pxaeo.webp",
     "chantier2": "upload-20260305_150656-high-rhqik4.webp",
+    # Photos de chantier ajoutées au site (dossier assets/photos)
+    "haie_thuyas": "assets/photos/taille-haie-thuyas.jpg",
+    "platanes_avant": "assets/photos/platanes-avant.jpg",
+    "platanes_apres": "assets/photos/platanes-apres.jpg",
+    "jardin_avant": "assets/photos/jardin-tonte-avant.jpg",
+    "jardin_apres": "assets/photos/jardin-tonte-apres.jpg",
+    "massif_avant": "assets/photos/massif-avant.jpg",
+    "massif_apres": "assets/photos/massif-apres.jpg",
+    "peupliers_avant": "assets/photos/elagage-peupliers-avant.jpg",
+    "peupliers_apres": "assets/photos/elagage-peupliers-apres.jpg",
 }
 
 
 def img(key):
-    return IMG + P[key]
+    return P[key] if P[key].startswith("assets/") else IMG + P[key]
 
 
 def esc(s):
@@ -73,7 +83,7 @@ TRADES = [
                 "id": "elagage-arbres",
                 "name": "Élagage d'arbres",
                 "kicker": "Taille raisonnée",
-                "media": ("duo", "elagage", "intervention"),
+                "media": ("duo", "elagage", "platanes_apres"),
                 "paras": [
                     "L'élagage est la bonne solution quand un arbre est <strong>sain mais trop envahissant</strong> : il cache la lumière, s'approche de la toiture, déborde chez le voisin ou au-dessus d'un passage. Nous adaptons la coupe à l'essence et à la configuration pour alléger sans dénaturer.",
                     "Selon les cas, nous réalisons une taille douce d'entretien, une réduction de couronne, un éclaircissage pour laisser passer la lumière et le vent, ou la suppression du bois mort qui risque de tomber. Le travail se fait en grimpe ou depuis le sol selon la hauteur et l'accès.",
@@ -118,7 +128,7 @@ TRADES = [
             "L'arbre penche, son tronc est creux ou fendu",
             "Les branches débordent chez le voisin ou sur la voie publique",
         ],
-        "gallery": [("elagage", "Élagage d'arbre en hauteur"), ("intervention", "Intervention d'élagage"), ("abattage", "Abattage sécurisé près d'une habitation"), ("diagnostic", "Diagnostic avant intervention"), ("apres_abattage", "Après abattage et nettoyage du chantier"), ("chantier1", "Chantier dans le Val-d'Oise"), ("chantier2", "Intervention dans le 95")],
+        "gallery": [("platanes_apres", "Taille en têtes de chat de platanes"), ("elagage", "Élagage d'arbre en hauteur"), ("intervention", "Intervention d'élagage"), ("abattage", "Abattage sécurisé près d'une habitation"), ("diagnostic", "Diagnostic avant intervention"), ("apres_abattage", "Après abattage et nettoyage du chantier"), ("chantier1", "Chantier dans le Val-d'Oise"), ("chantier2", "Intervention dans le 95")],
         "faq": [
             ("Combien coûte un élagage dans le Val-d'Oise ?", "Le prix dépend de la hauteur de l'arbre, de son accessibilité, du volume à couper et des contraintes autour (toiture, voisins, lignes). C'est pourquoi nous nous déplaçons gratuitement pour établir un devis précis et sans engagement."),
             ("Quelle est la meilleure période pour élaguer ?", "Pour beaucoup d'essences, la période de repos végétatif (de novembre à mars, hors gel) est favorable. Certaines tailles légères se font aussi en été. Nous vous conseillons selon l'arbre et l'objectif."),
@@ -134,7 +144,7 @@ TRADES = [
         "menu": "Jardin & espaces verts",
         "icon": "broom",
         "roof": False,
-        "card_img": "haie",
+        "card_img": "haie_thuyas",
         "short": "Haies, entretien de jardin, débroussaillage, pelouse, lierre.",
         "title": "Entretien de jardin, taille de haies & débroussaillage (95) | Adolphe",
         "desc": "Paysagiste dans le Val-d'Oise (95) : taille de haies, entretien de jardin, débroussaillage, pose de pelouse synthétique, enlèvement de lierre. Devis gratuit au 07 59 78 18 06.",
@@ -151,7 +161,7 @@ TRADES = [
                 "id": "taille-de-haies",
                 "name": "Taille de haies",
                 "kicker": "Lignes nettes",
-                "media": ("duo", "haie", "haie_finie"),
+                "media": ("duo", "haie_thuyas", "haie_finie"),
                 "paras": [
                     "Une haie bien taillée change tout dans un jardin : elle protège des regards sans étouffer l'espace. Nous réalisons des <strong>tailles d'entretien régulières</strong> comme des <strong>remises en forme</strong> plus importantes sur des haies laissées à l'abandon.",
                     "Faces, dessus, hauteur : nous travaillons au cordeau pour une silhouette homogène, en réglant au passage les problèmes de passage, de lumière ou de voisinage. Thuyas, lauriers, troènes, photinias, charmilles… chaque essence a sa bonne période et sa bonne technique.",
@@ -164,7 +174,7 @@ TRADES = [
                 "id": "entretien-de-jardin",
                 "name": "Entretien de jardin",
                 "kicker": "Toute l'année",
-                "media": ("duo", "jardin", "jardin_chantier"),
+                "media": ("duo", "jardin_apres", "jardin"),
                 "paras": [
                     "Un jardin demande de la régularité. Nous proposons des <strong>remises en propre ponctuelles</strong> (avant une vente, un événement, au retour de vacances) ou un <strong>entretien suivi</strong> à la fréquence qui vous convient.",
                     "Tonte, désherbage des allées et massifs, taille des arbustes, ramassage des feuilles, nettoyage des terrasses : nous gardons votre extérieur présentable en toute saison, ce qui valorise la maison et évite les gros travaux de rattrapage.",
@@ -177,7 +187,7 @@ TRADES = [
                 "id": "debroussaillage",
                 "name": "Débroussaillage",
                 "kicker": "Terrain dégagé",
-                "media": ("duo", "debroussaillage", "exterieur"),
+                "media": ("duo", "debroussaillage", "massif_apres"),
                 "paras": [
                     "Herbes hautes, ronces, repousses d'arbustes, accès masqués : nous remettons vos terrains en état pour retrouver des <strong>zones claires, accessibles et faciles à entretenir</strong>.",
                     "Le débroussaillage est très utile avant une vente ou une location, après une longue absence, avant des travaux ou simplement pour sécuriser un terrain. Nous adaptons le matériel (débroussailleuse, broyeur) à la densité de la végétation et évacuons tout.",
@@ -221,7 +231,7 @@ TRADES = [
             "Vous préparez une vente ou une location",
             "La pelouse est abîmée et demande trop d'entretien",
         ],
-        "gallery": [("haie", "Taille de haie en cours de reprise"), ("haie_finie", "Taille de haies finalisée"), ("jardin", "Extérieur remis en propre"), ("jardin_chantier", "Entretien de jardin en cours"), ("debroussaillage", "Débroussaillage de terrain"), ("pelouse", "Pose de pelouse synthétique"), ("lierre", "Façade dégagée du lierre"), ("exterieur", "Travaux d'entretien extérieur")],
+        "gallery": [("haie_thuyas", "Taille d'une haie de thuyas"), ("jardin_apres", "Jardin remis en état et tondu"), ("massif_apres", "Massif couvre-sol taillé"), ("haie", "Taille de haie en cours de reprise"), ("haie_finie", "Taille de haies finalisée"), ("jardin", "Extérieur remis en propre"), ("jardin_chantier", "Entretien de jardin en cours"), ("debroussaillage", "Débroussaillage de terrain"), ("pelouse", "Pose de pelouse synthétique"), ("lierre", "Façade dégagée du lierre"), ("exterieur", "Travaux d'entretien extérieur")],
         "faq": [
             ("Proposez-vous un entretien régulier ?", "Oui, nous intervenons à la fréquence que vous choisissez (mensuelle, saisonnière…) ou ponctuellement pour une remise en propre."),
             ("Quand faut-il tailler sa haie ?", "En général à la fin de l'hiver et à la fin de l'été, en évitant la période de nidification. Le bon moment dépend aussi de l'essence : nous vous conseillons."),
@@ -259,13 +269,39 @@ LOGO = (f'<img class="brand-logo" src="{IMG}upload-logo-site.png" alt="Logo Éla
         '<span class="brand-fallback"><span class="brand-mark"><svg><use href="#i-logo"/></svg></span>'
         '<span><span class="brand-name">Adolphe</span><span class="brand-sub">Élagueur · Paysagiste</span></span></span>')
 
-# Bloc avant / après (photos déposées dans assets/photos/). Affiché seulement quand les deux photos sont chargées.
-BEFORE_AFTER = """<div class="ba reveal">
-  <figure><img src="assets/photos/elagage-peupliers-avant.jpg" alt="Peupliers avant élagage dans le Val-d'Oise" decoding="async"><figcaption>Avant</figcaption></figure>
-  <figure><img src="assets/photos/elagage-peupliers-apres.jpg" alt="Peupliers après élagage et réduction de hauteur dans le Val-d'Oise" decoding="async"><figcaption class="after">Après</figcaption></figure>
-  <p><b>Réduction de grands peupliers</b> près d'un immeuble : hauteur réduite, bois débité et chantier nettoyé.</p>
+# Comparaisons avant / après. Chaque bloc ne s'affiche que si ses deux photos sont chargées
+# (les peupliers restent masqués tant que leurs fichiers ne sont pas dans assets/photos/).
+COMPARISONS = [
+    {"key": "platanes", "trade": "elagage", "title": "Taille en têtes de chat de platanes",
+     "text": "Couronnes réduites et branches ramenées sur les têtes de chat : arbres allégés et abords dégagés."},
+    {"key": "peupliers", "trade": "elagage", "title": "Réduction de grands peupliers",
+     "text": "Près d'un immeuble : hauteur réduite, bois débité et chantier nettoyé."},
+    {"key": "jardin", "trade": "espaces-verts", "title": "Remise en état d'un jardin",
+     "text": "Herbes hautes fauchées, pelouse tondue en bandes : le terrain redevient praticable."},
+    {"key": "massif", "trade": "espaces-verts", "title": "Taille d'un massif couvre-sol",
+     "text": "Massif recadré, bordures nettes le long de l'allée et volumes harmonisés."},
+]
+
+
+def before_after(trade=None):
+    cards = ""
+    for c in COMPARISONS:
+        if trade and c["trade"] != trade:
+            continue
+        k = c["key"]
+        cards += f'''<div class="ba">
+  <figure><img src="{img(k + "_avant")}" alt="{esc(c["title"])} : avant" decoding="async"><figcaption>Avant</figcaption></figure>
+  <figure><img src="{img(k + "_apres")}" alt="{esc(c["title"])} : après" decoding="async"><figcaption class="after">Après</figcaption></figure>
+  <p><b>{esc(c["title"])}</b> {esc(c["text"])}</p>
 </div>
-"""
+'''
+    return f'''<div class="ba-wrap">
+  <div class="ba-head"><span class="eyebrow copper">Avant / Après</span><h3>Le résultat <span class="accent">se voit</span></h3></div>
+  <div class="ba-grid">
+{cards}  </div>
+</div>
+'''
+
 
 GTM_NOSCRIPT = """<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVZLCH2X"
@@ -449,7 +485,7 @@ def page(t, contact_html, lightbox_html, sprite, reviews):
       </div>
       <a href="#contact" class="btn btn-dark">Je veux le même résultat {ic("arrow")}</a>
     </div>
-    {BEFORE_AFTER if t["slug"] == "elagage" else ""}
+    {before_after(t["slug"])}
     <div class="gallery reveal">{items}</div>
   </div>
 </section>
@@ -650,7 +686,7 @@ def main():
     index = replace_block(index, "TRACKING", TRACKING)
     index = replace_block(index, "GTM-NOSCRIPT", GTM_NOSCRIPT)
     index = replace_block(index, "SPRITE", sprite)
-    index = replace_block(index, "AVANT-APRES", BEFORE_AFTER)
+    index = replace_block(index, "AVANT-APRES", before_after())
     index = replace_block(index, "HEADER", header(True))
     index = replace_block(index, "FOOTER", footer(True))
     index = replace_block(index, "TRADES", "".join(trade_card(t) for t in TRADES) + "\n")
