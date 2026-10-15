@@ -694,3 +694,17 @@ details .ans{padding:0 22px 22px;color:var(--muted);font-size:15.5px}
   .footer-bottom span{display:block;margin-bottom:6px}
 }
 @media (max-width:720px){.exp-badge{width:96px;height:96px;right:-6px;top:-18px;bottom:auto;border-width:4px}.exp-badge b{font-size:30px}.exp-badge small{font-size:9px}}
+
+/* ---------- Logo d'origine ---------- */
+.brand-logo{display:block;height:46px;width:auto;max-width:200px;object-fit:contain}
+.brand-fallback{display:none;align-items:center;gap:12px}
+.brand.no-logo .brand-logo{display:none}
+.brand.no-logo .brand-fallback{display:flex}
+.brand-footer{background:#fff;padding:8px 14px;border-radius:14px;box-shadow:0 10px 20px rgba(0,0,0,.18)}
+.brand-footer.no-logo{background:transparent;padding:0;box-shadow:none}
+@media (max-width:720px){.brand-logo{height:38px;max-width:160px}}
+.brand-footer{display:inline-flex;width:auto}
+
+/* Logo fondu dans le site : un éventuel fond blanc du PNG disparaît dans le beige */
+.brand-logo{mix-blend-mode:multiply}
+.brand-footer{background:var(--bg);padding:10px 16px;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 24px -10px rgba(0,0,0,.45);isolation:isolate}
