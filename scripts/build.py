@@ -498,6 +498,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 """
 
+# Logo d'origine du site (repli sur le nom en texte si l'image ne charge pas)
+LOGO = (f'<img class="brand-logo" src="{IMG}upload-logo-site.png" alt="Logo Élagage Adolphe" '
+        'width="180" height="44" decoding="async" '
+        'onerror="this.parentNode.classList.add(\'no-logo\')">'
+        '<span class="brand-fallback"><span class="brand-mark"><svg><use href="#i-logo"/></svg></span>'
+        '<span><span class="brand-name">Adolphe</span><span class="brand-sub">Élagage · Couverture · Zinguerie</span></span></span>')
+
 GTM_NOSCRIPT = """<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVZLCH2X"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -538,8 +545,7 @@ def header(home):
 <header class="header" id="header">
   <div class="container">
     <a href="{h or '#accueil'}" class="brand" aria-label="Adolphe – accueil">
-      <span class="brand-mark"><svg><use href="#i-logo"/></svg></span>
-      <span><span class="brand-name">Adolphe</span><span class="brand-sub">Élagage · Couverture · Zinguerie</span></span>
+      {LOGO}
     </a>
     <nav class="nav" aria-label="Navigation principale">
       <div class="dd"><button aria-expanded="false" aria-haspopup="true">Nos métiers {ic("right")}</button><div class="dd-menu">{menu_cols}</div></div>
@@ -580,9 +586,8 @@ def footer(home):
 <footer class="footer">
   <div class="container footer-grid">
     <div>
-      <a href="{h or '#accueil'}" class="brand">
-        <span class="brand-mark"><svg><use href="#i-logo"/></svg></span>
-        <span><span class="brand-name">Adolphe</span><span class="brand-sub">Élagage · Couverture · Zinguerie</span></span>
+      <a href="{h or '#accueil'}" class="brand brand-footer" aria-label="Adolphe – accueil">
+        {LOGO}
       </a>
       <p>Élagage, espaces verts, couverture et zinguerie dans tout le Val-d'Oise (95).</p>
       <ul>
