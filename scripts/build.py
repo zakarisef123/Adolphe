@@ -479,6 +479,31 @@ TRADES = [
 
 BY_SLUG = {t["slug"]: t for t in TRADES}
 
+# Balises Google (Tag Manager + Google Analytics + Google Ads), reprises à l'identique de l'ancien site
+TRACKING = """<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TVZLCH2X');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N3K3Y19X9H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N3K3Y19X9H');
+  gtag('config', 'AW-17854390149');
+</script>
+"""
+
+GTM_NOSCRIPT = """<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVZLCH2X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+"""
+
 
 # --------------------------------------------------------------------------
 # Blocs communs
@@ -550,7 +575,7 @@ def footer(home):
     cols = ""
     for t in TRADES:
         items = "".join(f'<li><a href="{t["file"]}#{s["id"]}">{esc(s["name"])}</a></li>' for s in t["services"])
-        cols += f'<div><h4><a href="{t["file"]}">{esc(t["menu"])}</a></h4><ul>{items}</ul></div>'
+        cols += f'<div class="f-trade"><h4><a href="{t["file"]}">{esc(t["menu"])}</a></h4><ul>{items}</ul></div>'
     return f'''<!-- FOOTER -->
 <footer class="footer">
   <div class="container footer-grid">
@@ -603,7 +628,7 @@ def trade_card(t):
     return f'<a class="trade reveal" href="{t["file"]}">{bg}<div class="t"><small>{esc(t["trade"])}</small><b>{esc(t["menu"])} {ic("arrow")}</b><span class="d">{esc(t["short"])}</span></div></a>'
 
 
-def page(t, contact_html, lightbox_html, sprite):
+def page(t, contact_html, lightbox_html, sprite, reviews):
     url = SITE + t["file"]
     rating = '<div class="ph-badge"><span class="score">4,9</span><span><span class="stars">★★★★★</span><small>8 avis Google</small></span></div>'
     hero_media = media(t["hero"], t["menu"] + " dans le Val-d'Oise", "ph-media", rating)
@@ -675,16 +700,7 @@ def page(t, contact_html, lightbox_html, sprite):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N3K3Y19X9H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', 'G-N3K3Y19X9H');
-  gtag('config', 'AW-17854390149');
-</script>
-<title>{esc(t["title"])}</title>
+{TRACKING}<title>{esc(t["title"])}</title>
 <meta name="description" content="{esc(t["desc"])}">
 <link rel="canonical" href="{url}">
 <meta property="og:locale" content="fr_FR">
@@ -707,7 +723,7 @@ def page(t, contact_html, lightbox_html, sprite):
 </script>
 </head>
 <body>
-{sprite}
+{GTM_NOSCRIPT}{sprite}
 {header(False)}
 <main>
 
@@ -808,6 +824,7 @@ def page(t, contact_html, lightbox_html, sprite):
 <div style="height:110px"></div>
 {gallery}
 
+{reviews}
 <section class="section faq">
   <div class="container">
     <div class="faq-side reveal">
@@ -857,8 +874,11 @@ def main():
     index = index_path.read_text()
     sprite = (ROOT / "scripts" / "sprite.html").read_text()
     contact = re.search(r'<!-- CONTACT -->\n<section class="section contact" id="contact">.*?</section>\n', index, re.S).group(0)
+    reviews = re.search(r'<!-- REVIEWS -->\n<section.*?</section>\n', index, re.S).group(0)
     lightbox = re.search(r'<div class="lightbox" id="lightbox".*?</div>\n', index, re.S).group(0)
 
+    index = replace_block(index, "TRACKING", TRACKING)
+    index = replace_block(index, "GTM-NOSCRIPT", GTM_NOSCRIPT)
     index = replace_block(index, "SPRITE", sprite)
     index = replace_block(index, "HEADER", header(True))
     index = replace_block(index, "FOOTER", footer(True))
@@ -866,7 +886,7 @@ def main():
     index_path.write_text(index)
 
     for t in TRADES:
-        (ROOT / t["file"]).write_text(page(t, contact, lightbox, sprite))
+        (ROOT / t["file"]).write_text(page(t, contact, lightbox, sprite, reviews))
         print("écrit", t["file"])
 
     urls = [SITE] + [SITE + t["file"] for t in TRADES]

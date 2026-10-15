@@ -70,7 +70,7 @@
       var d=new FormData(form);
       var body='Nom : '+d.get('nom')+'\nTéléphone : '+d.get('telephone')+'\nEmail : '+(d.get('email')||'-')+'\nVille : '+d.get('ville')+'\nTravaux : '+d.get('type')+'\n\n'+(d.get('message')||'');
       var subject='Demande de devis – '+d.get('type')+' – '+d.get('ville');
-      if(window.gtag)gtag('event','generate_lead',{service:d.get('type')});
+      if(window.gtag){gtag('event','generate_lead',{service:d.get('type')});gtag('event','conversion',{'send_to':'AW-17854390149/ghi2CKGo6o8cEIW_0cFC'});}
       window.location.href='mailto:barryadolphe9@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
       ok.style.background='';ok.style.color='';
       ok.innerHTML='Merci ! Votre messagerie va s\'ouvrir avec votre demande. Pour une réponse immédiate, appelez le <a href="tel:+33759781806" style="text-decoration:underline">07 59 78 18 06</a>.';
@@ -97,7 +97,7 @@
 
   // Reviews carousel
   var track=$('revTrack');
-  if(track){
+  if(track&&$('revPrev')){
     var step=function(){var c=track.querySelector('.rev');return c?c.offsetWidth+20:320;};
     $('revPrev').addEventListener('click',function(){track.scrollBy({left:-step(),behavior:'smooth'})});
     $('revNext').addEventListener('click',function(){track.scrollBy({left:step(),behavior:'smooth'})});

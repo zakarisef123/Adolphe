@@ -605,3 +605,92 @@ details .ans{padding:0 22px 22px;color:var(--muted);font-size:15.5px}
 .nav a,.dd > button,.header-phone,.brand-sub{white-space:nowrap}
 @media (max-width:1280px){.header-phone{display:none}}
 @media (max-width:720px){.brand-sub{letter-spacing:.06em;font-size:10px}.brand{gap:10px}.brand-mark{width:42px;height:42px}}
+
+/* Avis : tous visibles, en grille */
+.rev-track{display:grid;grid-auto-flow:row;grid-template-columns:repeat(4,1fr);grid-auto-columns:auto;overflow:visible;scroll-snap-type:none;padding-bottom:0}
+@media (max-width:1080px){.rev-track{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){.rev-track{grid-template-columns:1fr;gap:14px}.rev{padding:22px}}
+
+/* ---------- Correctifs (desktop + mobile) ---------- */
+.roof-points > div{display:flex;gap:14px;align-items:flex-start}
+.roof-points > div > div{display:block}
+.cta-box > *{min-width:0}
+.cta-box h2,.cta-box p{overflow-wrap:break-word}
+
+/* ---------- Ajustements téléphone ---------- */
+@media (max-width:720px){
+  h2{font-size:30px}
+  .section-head{margin-bottom:36px}
+  .section-head p{font-size:16px}
+  /* Promesses : 2 x 2 compact */
+  .promises .container{grid-template-columns:1fr 1fr;padding:0}
+  .promise{padding:20px 16px;border-right:1px solid var(--line)!important}
+  .promise:nth-child(2n){border-right:0!important}
+  .promise .ic{width:38px;height:38px;border-radius:11px;margin-bottom:10px}
+  .promise .ic svg{width:20px;height:20px}
+  .promise h3{font-size:15px}
+  .promise p{font-size:13px;line-height:1.45}
+  /* Cartes services compactes */
+  .svc-grid{gap:16px}
+  .svc-media,.roof-art{height:150px}
+  .svc-body{padding:18px 18px 20px}
+  .svc-body h3{font-size:20px;margin-bottom:6px}
+  .svc-body p{font-size:14.5px;margin-bottom:12px}
+  .svc-body ul{display:none}
+  /* Pourquoi nous choisir : icône à gauche */
+  .why-grid{gap:12px}
+  .why{padding:18px;display:grid;grid-template-columns:44px 1fr;gap:4px 14px;align-items:start}
+  .why .ic{width:44px;height:44px;border-radius:12px;margin:0;grid-row:span 2}
+  .why .ic svg{width:22px;height:22px}
+  .why h3{font-size:16px;margin:0}
+  .why p{font-size:14px}
+  .why .num{display:none}
+  /* Bloc toiture */
+  .materials{gap:10px}
+  .mat .sw{height:80px}
+  .mat div.t{padding:12px 14px}
+  .mat b{font-size:15px}
+  .mat small{font-size:12.5px}
+  /* Avis : tous visibles, plus compacts */
+  .rev{padding:18px}
+  .rev p{margin:8px 0 12px;font-size:15px}
+  .rev-score{padding:14px 18px}
+  .rev-score .big{font-size:42px}
+  /* Galerie sur 2 colonnes */
+  .gallery,.gallery.small{columns:2;column-gap:10px}
+  .gallery button{margin-bottom:10px;border-radius:12px}
+  .gallery button span{display:none}
+  .lb-prev,.lb-next{top:auto;bottom:70px;transform:none}
+  /* Étapes plus serrées */
+  .process-grid{gap:28px}
+  .step .n{width:60px;height:60px;font-size:24px;margin-bottom:14px}
+  /* Contact : formulaire en premier */
+  .contact .container{gap:20px}
+  .form-card{order:-1}
+  .c-actions{flex-direction:column}
+  /* Pages métiers */
+  .pb-media{aspect-ratio:4/3}
+  .pb-media.duo{aspect-ratio:auto;grid-template-columns:1fr 1fr}
+  .pb-media.duo img{aspect-ratio:3/4;height:auto}
+  .pb-text h2{font-size:28px}
+  .pb-text > p{font-size:16px}
+  .pb-text .incl{grid-template-columns:1fr 1fr;gap:8px}
+  .pb-text .incl div{padding:10px;font-size:13px;gap:7px;border-radius:10px}
+  .pb-text .incl svg{width:17px;height:17px}
+  .prose p{font-size:16px}
+  .signs li{padding:12px 14px;font-size:15px}
+  .side-box{display:none}
+  .side-cta{padding:24px}
+  .mini-steps{gap:10px}
+  .ph-media{aspect-ratio:4/3}
+  /* Pied de page compact */
+  .footer{padding-top:56px}
+  .footer .container{grid-template-columns:1fr 1fr;gap:28px 20px}
+  .footer .container > div:first-child{grid-column:1/-1}
+  .footer .f-trade ul{display:none}
+  .footer h4{margin:0;font-size:14.5px}
+  .footer-bottom{margin-top:36px}
+  .footer-bottom .container{display:block}
+  .footer-bottom span{display:block;margin-bottom:6px}
+}
+@media (max-width:720px){.exp-badge{width:96px;height:96px;right:-6px;top:-18px;bottom:auto;border-width:4px}.exp-badge b{font-size:30px}.exp-badge small{font-size:9px}}
